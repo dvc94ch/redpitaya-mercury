@@ -5,5 +5,5 @@ authors = ["David Craven <david@craven.ch>"]
 
 [dependencies]
 fs2 = "0.4.3"
-uio = { path = "./rust-uio" }
+uio = { git = "https://github.com/dvc94ch/rust-uio" }
 volatile-register = "0.2.0"
