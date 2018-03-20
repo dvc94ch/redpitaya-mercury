@@ -11,7 +11,7 @@ use std::net::{TcpStream, TcpListener};
 // Max Sample rate: 125MSps
 // LA buffer size: 16384 bytes
 //
-// Decimation factor of 15260:
+// Decimation factor of 10000:
 // Sample rate: 125MSps / 10000 ~ 12.5kSps
 // Buffer fills ~1/sec
 // Takes 6 tcp packets to send a buffer

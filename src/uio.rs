@@ -20,28 +20,6 @@ pub trait Show {
     fn show(&self);
 }
 
-/*pub struct Device {
-    uio: uio::UioDevice,
-    regs: uio::MemoryMap,
-    buffer: Option<uio::MemoryMap>,
-}
-
-impl Device {
-    pub fn new(path: &'str) {
-        let uio_num = util::get_uio_num(Self::DEVICE_FILE_PATH);
-        let uio = _uio::UioDevice::new(uio_num).unwrap();
-        let regs = uio.map_mapping(0).unwrap();
-        let buffer = uio.map_mapping(1);
-        Self { uio, regs, buffer }
-    }
-}
-
-impl Show for T where T: Device + RegDevice {
-    fn show(&self) {
-        self.regs().show();
-    }
-}*/
-
 pub trait RegDevice {
     type Registers;
 
@@ -68,4 +46,13 @@ pub trait BufferDevice {
     fn mut_buffer(&self) -> &mut Self::Buffer {
         unsafe { mem::transmute::<*mut u8, &mut Self::Buffer>(self.buffer_mmap().data()) }
     }
+}
+
+pub trait IrqAPI {
+    /// Enable interrupt
+    fn enable_irq(&mut self);
+    /// Disable interrupt
+    fn disable_irq(&mut self);
+    /// Wait for interrupt
+    fn wait_irq(&mut self) -> u32;
 }
